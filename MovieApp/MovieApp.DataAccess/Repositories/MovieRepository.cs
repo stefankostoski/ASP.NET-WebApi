@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MovieApp.DataAccess.Repositories
 {
-    public class MovieRepositort : IRepository<Movie>
+    public class MovieRepository : IRepository<Movie>
     {
         public List<Movie> GetAll()
         {
