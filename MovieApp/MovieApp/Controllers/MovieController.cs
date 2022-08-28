@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.Services.Interfaces;
 using MovieApp.ViewModels;
-using System;
 
 namespace MovieApp.API.Controllers
 {
@@ -30,19 +29,32 @@ namespace MovieApp.API.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult CreateNeMovie([FromBody] MovieViewModel movie)
+        public IActionResult CreateNewMovie([FromBody] MovieViewModel movie)
         {
-            //ERROR: Argument 1: cannot convert from 'void' to 'object?'
-
-            //try
-            //{
-            //    return Ok(_movieService.Create(movie));
-            //}
-            //catch
-            //{
-            //    return BadRequest();
-            //}
+            try
+            {
+                _movieService.Create(movie);
+                return Ok("Movie created successfully!");
+            }
+            catch
+            {
+                return BadRequest();
+            }
             throw new NotImplementedException();
+        }
+
+        [HttpPut("Update")]
+        public IActionResult UpdateMovie([FromBody] MovieViewModel movie)
+        {
+            try
+            {
+                _movieService.Update(movie);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete("DeleteById/{id}")]
