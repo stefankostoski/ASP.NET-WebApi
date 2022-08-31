@@ -1,55 +1,45 @@
-﻿using MovieApp.DataAccess.Abstraction;
-using MovieApp.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MoviesApp.DataAccess.Abstraction;
+using MoviesApp.DomainModels;
 
-namespace MovieApp.DataAccess.Repositories
+namespace MoviesApp.DataAccess.Repositories
 {
     public class MovieRepository : IRepository<MovieDto>
     {
-        private readonly MovieAppDbContext _dbContext;
-        public MovieRepository(MovieAppDbContext dbContext)
+        private readonly MoviesAppDbContext _dbContext;
+        public MovieRepository(MoviesAppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public List<MovieDto> GetAll()
+        public IEnumerable<MovieDto> GetAll()
         {
             return _dbContext.Movies.ToList();
         }
-
         public MovieDto GetById(int id)
         {
             return _dbContext.Movies.FirstOrDefault(x => x.Id == id);
         }
-
-        public List<MovieDto> GetByGenre(string genre)
+        public IEnumerable<MovieDto> GetByGenre(int genre)
         {
-            return _dbContext.Movies.Where(x => x.Genre.ToString() == genre).ToList();  
+            return _dbContext.Movies.FirstOrDefault(g => g.Genre.Equals(genre));
         }
-
         public void Add(MovieDto entity)
         {
             _dbContext.Movies.Add(entity);
             _dbContext.SaveChanges();
         }
-
         public void Update(MovieDto entity)
         {
-           var movie = GetById(entity.Id);
+            var movie = GetById(entity.Id);
 
-            if(movie != null)
+            if (movie != null)
             {
                 _dbContext.Movies.Update(entity);
                 _dbContext.SaveChanges();
             }
-
         }
-        public void DeleteById(int id)
+        public void Delete(MovieDto entity)
         {
-            var movie = GetById(id);
+            var movie = GetById(entity.Id);
 
             if (movie != null)
             {

@@ -1,14 +1,14 @@
-﻿using MovieApp.ViewModels;
+﻿using MovieApp.InterfaceModels;
 
 namespace MovieApp.Services.Interfaces
 {
     public interface IMovieService
     {
-        List<MovieViewModel> GetAll();
-        MovieViewModel GetById(int id);
-        MovieViewModel GetByGenre(string genre);
-        void Create(MovieViewModel movie);
-        void Update(MovieViewModel movie);
+        List<Movie> GetAll();
+        Movie GetById(int id);
+        List<Movie> GetByGenre(string genre);
+        void Create(Movie movie);
+        void Update(Movie movie);
         void Delete(int id);
     }
 }

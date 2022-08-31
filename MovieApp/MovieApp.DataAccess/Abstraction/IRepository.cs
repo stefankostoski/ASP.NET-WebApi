@@ -4,7 +4,7 @@
     {
         List<T> GetAll();
         T GetById(int id);
-        T GetByGenre(string genre);
+        List<T> GetByGenre(string genre);
         void Add(T entity);
         void Update(T entity);
         void DeleteById(int id);

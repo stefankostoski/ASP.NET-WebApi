@@ -1,27 +1,27 @@
 ﻿using MovieApp.DataAccess.Abstraction;
 using MovieApp.Domain;
+using MovieApp.InterfaceModels;
 using MovieApp.Mappers;
 using MovieApp.Services.Interfaces;
-using MovieApp.ViewModels;
 
 namespace MovieApp.Services.Implementation
 {
     public class MovieService : IMovieService
     {
-        private readonly IRepository<Movie> _movieRepository;
+        private readonly IRepository<MovieDto> _movieRepository;
 
-        public MovieService(IRepository<Movie> movieRepository)
+        public MovieService(IRepository<MovieDto> movieRepository)
         {
             _movieRepository = movieRepository;
         }
 
-        public List<MovieViewModel> GetAll()
+        public List<Movie> GetAll()
         {
             var items = _movieRepository.GetAll().Select(x => x.ToModel()).ToList();
             return items;
         }
 
-        public MovieViewModel GetById(int id)
+        public Movie GetById(int id)
         {
             var movie = _movieRepository.GetById(id);
             if (movie == null)
@@ -31,19 +31,13 @@ namespace MovieApp.Services.Implementation
             return movie.ToModel();
         }
 
-        public MovieViewModel GetByGenre(string genre)
+        public List<Movie> GetByGenre(string genre)
         {
-            var movieByGenre = _movieRepository.GetByGenre(genre);
-
-            if (movieByGenre == null)
-            {
-                throw new Exception($"Movie with Genre:{genre} not found!");
-            }
-
-            return movieByGenre.ToModel();
+            List<Movie> items = _movieRepository.GetAll().Select(x => x.ToModel()).Where(g => g.Genre.ToString() == genre).ToList();
+            return items;
         }
 
-        public void Create(MovieViewModel movie)
+        public void Create(Movie movie)
         {
             if (string.IsNullOrWhiteSpace(movie.Title))
             {
@@ -53,7 +47,7 @@ namespace MovieApp.Services.Implementation
             _movieRepository.Add(MovieMapper.ToViewModel(movie));
         }
 
-        public void Update(MovieViewModel movie)
+        public void Update(Movie movie)
         {
             var item = _movieRepository.GetById(movie.Id);
             if (item != null)

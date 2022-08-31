@@ -1,21 +1,14 @@
 ﻿using MovieApp.Domain;
 using MovieApp.Domain.Enums;
-using MovieApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using MovieApp.InterfaceModels;
 
 namespace MovieApp.Mappers
 {
     public static class MovieMapper
     {
-        public static Movie ToViewModel(this MovieViewModel movie)
+        public static MovieDto ToViewModel(this Movie movie)
         {
-            return new Movie
+            return new MovieDto
             {
                 Title = movie.Title,
                 Description = movie.Description,
@@ -23,9 +16,9 @@ namespace MovieApp.Mappers
                 Genre = movie.Genre
             };
         }
-        public static MovieViewModel ToModel(this Movie movie)
+        public static Movie ToModel(this MovieDto movie)
         {
-            return new MovieViewModel
+            return new Movie
             {
 
                 Id = movie.Id,

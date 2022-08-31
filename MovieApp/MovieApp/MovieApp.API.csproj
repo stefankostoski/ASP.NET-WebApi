@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MovieApp.DataAccess\MovieApp.DataAccess.csproj" />
+    <ProjectReference Include="..\MovieApp.Configuration\MovieApp.Configuration.csproj" />
     <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
+    <ProjectReference Include="..\MovieApp.Utilities\MovieApp.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

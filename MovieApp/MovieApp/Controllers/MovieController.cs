@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieApp.InterfaceModels;
 using MovieApp.Services.Interfaces;
-using MovieApp.ViewModels;
 
 namespace MovieApp.API.Controllers
 {
@@ -28,8 +28,21 @@ namespace MovieApp.API.Controllers
             }
         }
 
+        [HttpGet("GetByGenre")]
+        public IActionResult GetByGenre([FromRoute] string genre)
+        {
+            try
+            {
+                return Ok(_movieService.GetByGenre(genre));
+            }
+            catch
+            {
+                return new NotFoundObjectResult($"The movie with genre: {genre} was not found in the database!");
+            }
+        }
+
         [HttpPost("Create")]
-        public IActionResult CreateNewMovie([FromBody] MovieViewModel movie)
+        public IActionResult CreateNewMovie([FromBody] Movie movie)
         {
             try
             {
@@ -44,7 +57,7 @@ namespace MovieApp.API.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult UpdateMovie([FromBody] MovieViewModel movie)
+        public IActionResult UpdateMovie([FromBody] Movie movie)
         {
             try
             {

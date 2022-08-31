@@ -1,10 +1,10 @@
-﻿using MovieApp.Domain.Enums;
+﻿using MoviesApp.DomainModels.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieApp.Domain
+namespace MoviesApp.DomainModels
 {
-    public class Movie
+    public class MovieDto
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

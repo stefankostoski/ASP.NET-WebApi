@@ -7,12 +7,12 @@ namespace MovieApp.DataAccess
     {
         public MovieAppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<MovieDto> Movies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Movie>().HasData(
-                new Movie
+            modelBuilder.Entity<MovieDto>().HasData(
+                new MovieDto
                 {
                     Id = 1,
                     Title = "No Time to Die",
@@ -20,7 +20,7 @@ namespace MovieApp.DataAccess
                     Year = 2021,
                     Genre = Domain.Enums.Genre.Action
                 },
-                 new Movie
+                 new MovieDto
                  {
                      Id = 2,
                      Title = "American Pie Presents: Beta House",
@@ -28,7 +28,7 @@ namespace MovieApp.DataAccess
                      Year = 2007,
                      Genre = Domain.Enums.Genre.Comedy
                  },
-                  new Movie
+                  new MovieDto
                   {
                       Id = 3,
                       Title = "Insidious: Chapter 3",
@@ -36,7 +36,7 @@ namespace MovieApp.DataAccess
                       Year = 2015,
                       Genre = Domain.Enums.Genre.Horror
                   },
-                  new Movie
+                  new MovieDto
                   {
                       Id = 4,
                       Title = "Gone Girl",
@@ -44,7 +44,7 @@ namespace MovieApp.DataAccess
                       Year = 2014,
                       Genre = Domain.Enums.Genre.Drama
                   },
-                  new Movie
+                  new MovieDto
                   {
                       Id = 5,
                       Title = "Gone Girl",

@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using MovieApp.Configuration;
 using MovieApp.DataAccess;
 using MovieApp.DataAccess.Abstraction;
 using MovieApp.DataAccess.Repositories;
 using MovieApp.Domain;
 using MovieApp.Services.Implementation;
 using MovieApp.Services.Interfaces;
+using MovieApp.Utilities;
+using System;
+using MovieApp.Configuration;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +20,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//===Dependency injection
-builder.Services.AddTransient<IMovieService, MovieService>();
+var appConfig = builder.Configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appConfig);
 
-builder.Services.AddTransient<IRepository<Movie>, MovieRepository>();
-//====
+var appSettings = appConfig.Get<AppSettings>();
 
-builder.Services.AddDbContext<MovieAppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.RegisterModule(appSettings.ConnectionString);
 
 var app = builder.Build();
 
