@@ -1,10 +1,5 @@
 ﻿using MovieApp.DataAccess.Abstraction;
 using MovieApp.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.DataAccess.Repositories
 {
@@ -27,7 +22,7 @@ namespace MovieApp.DataAccess.Repositories
 
         public List<MovieDto> GetByGenre(string genre)
         {
-            return _dbContext.Movies.Where(x => x.Genre.ToString() == genre).ToList();  
+            return _dbContext.Movies.Where(x => x.Genre.ToString() == genre).ToList();
         }
 
         public void Add(MovieDto entity)
@@ -38,9 +33,9 @@ namespace MovieApp.DataAccess.Repositories
 
         public void Update(MovieDto entity)
         {
-           var movie = GetById(entity.Id);
+            var movie = GetById(entity.Id);
 
-            if(movie != null)
+            if (movie != null)
             {
                 _dbContext.Movies.Update(entity);
                 _dbContext.SaveChanges();

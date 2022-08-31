@@ -1,5 +1,4 @@
 ﻿using MovieApp.Domain;
-using MovieApp.Domain.Enums;
 using MovieApp.InterfaceModels;
 
 namespace MovieApp.Mappers

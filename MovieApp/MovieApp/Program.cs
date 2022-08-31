@@ -1,15 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using MovieApp.Configuration;
-using MovieApp.DataAccess;
-using MovieApp.DataAccess.Abstraction;
-using MovieApp.DataAccess.Repositories;
-using MovieApp.Domain;
-using MovieApp.Services.Implementation;
-using MovieApp.Services.Interfaces;
 using MovieApp.Utilities;
-using System;
-using MovieApp.Configuration;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

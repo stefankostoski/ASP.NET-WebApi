@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieApp.InterfaceModels\MovieApp.InterfaceModels.csproj" />
-    <ProjectReference Include="..\MovieApp.ViewModels\MovieApp.InterfaceModels.csproj" />
   </ItemGroup>
 
 </Project>

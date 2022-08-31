@@ -28,7 +28,7 @@ namespace MovieApp.API.Controllers
             }
         }
 
-        [HttpGet("GetByGenre")]
+        [HttpGet("GetByGenre/{genre}")]
         public IActionResult GetByGenre([FromRoute] string genre)
         {
             try
@@ -53,7 +53,6 @@ namespace MovieApp.API.Controllers
             {
                 return BadRequest();
             }
-            throw new NotImplementedException();
         }
 
         [HttpPut("Update")]
